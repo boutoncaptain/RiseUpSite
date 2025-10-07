@@ -116,9 +116,11 @@ def team():
 def contact():
     return render_template_string(contact_html)
 
-# Crée un tunnel ngrok HTTPS pour accéder au site depuis Colab
-public_url = ngrok.connect(5000, bind_tls=True)
-print("🌐 Ton site Rise Up est accessible ici :", public_url)
+
 
 # Lancer le serveur Flask sur toutes les interfaces
-app.run(host="0.0.0.0", port=5000)
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
